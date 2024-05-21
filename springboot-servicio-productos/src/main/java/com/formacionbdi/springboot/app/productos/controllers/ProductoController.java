@@ -14,13 +14,13 @@ import com.formacionbdi.springboot.app.productos.models.service.IProductoService
 
 @RestController
 public class ProductoController {
-	
+
 	@Value("#{server.port}")
 	private Integer port;
-	
+
 	@Autowired
 	private IProductoService productoService;
-	
+
 	@GetMapping("/listar")
 	public List<Producto> listar() {
 		return productoService.findAll().stream().map(producto -> {
@@ -28,12 +28,18 @@ public class ProductoController {
 			return producto;
 		}).collect(Collectors.toList());
 	}
-	
+
 	@GetMapping("/ver/{id}")
 	public Producto detalle(@PathVariable Long id) {
 		Producto producto = productoService.findById(id);
 		producto.setPort(port);
-		
+
+		try {
+			Thread.sleep(2000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 		return producto;
 	}
 }
