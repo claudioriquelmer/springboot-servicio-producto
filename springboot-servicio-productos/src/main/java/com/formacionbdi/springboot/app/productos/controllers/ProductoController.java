@@ -39,10 +39,10 @@ public class ProductoController {
 		Producto producto = productoService.findById(id);
 		producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
 
-		/*
-		 * try { Thread.sleep(2000L); } catch (InterruptedException e) {
-		 * e.printStackTrace(); }
-		 */
+		
+		 try { Thread.sleep(2000L); } catch (InterruptedException e) {
+		 e.printStackTrace(); }
+		 
 
 		return producto;
 	}
